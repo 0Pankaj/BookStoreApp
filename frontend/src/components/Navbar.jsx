@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Login from './Login';
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
+import { useAuth } from '../context/AuthProvider';
 
 const Navbar = () => {
-   
+     
+    const [authUser, setAuthUser]=useAuth();
+    
       const [showLogin, setShowLogin] = useState(false)
 
      
@@ -110,6 +114,9 @@ const Navbar = () => {
   </svg>
 </label>
   </div>
+
+  {
+    authUser?<Logout/>:
   <div className="">
     <button
   className="bg-black text-white px-3 py-2 rounded-md rounded-md"
@@ -121,6 +128,7 @@ const Navbar = () => {
 {showLogin && <Login setShowLogin={setShowLogin} />}
 
   </div>
+}
 </div>
 </div>
     </div>

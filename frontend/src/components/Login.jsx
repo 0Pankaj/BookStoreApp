@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form"
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Login = () => {
 
@@ -10,7 +12,29 @@ const Login = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit =async (data) => {
+         const userinfo={
+          email:data.email,
+          password:data.password,
+         }
+       await axios.post("http://localhost:4001/user/login", userinfo)
+        .then((res)=>{
+          console.log(res.data)
+          if(res.data){
+            toast.success('login successfull');
+            document.getElementById("my_modal_3").close()
+            window.location.reload();
+          }
+          // want user data to store on server for validation
+          //  so that we use anywhere by creating context api
+          localStorage.setItem("Users" ,JSON.stringify(res.data.user));
+        }).catch((err)=>{
+          if(err.response){
+          console.log(err);
+          toast.error("error:"+ err.response.data.message);
+          }
+        });
+    } 
 
     return (
         <div>
@@ -32,7 +56,7 @@ const Login = () => {
                             <span>Email</span>
                             <br />
                             <input type="email" placeholder='Enter your email'
-                                className='w-80 px-3 py-1 border rounded-md outline-none'
+                                className='w-80 px-3 py-1 border rounded-md outline-none  dark:bg-slate-900 dark:text-white'
                                 {...register("email", { required: true })} />
                                 <br />
                             {errors.email && <span className='text-sm text-red-500'>This field is required</span>}
@@ -42,7 +66,7 @@ const Login = () => {
                             <span>Password</span>
                             <br />
                             <input type="password" placeholder='Enter your password'
-                                className='w-80 px-3 py-1 border rounded-md outline-none'
+                                className='w-80 px-3 py-1 border rounded-md outline-none  dark:bg-slate-900 dark:text-white'
                                 {...register("password", { required: true })} />
                                 <br />
                             {errors.password && <span 

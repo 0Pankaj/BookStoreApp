@@ -32,7 +32,7 @@ function Banner () {
                </label>
                  <div className="validator-hint hidden">Enter valid email address</div>
               </div>
-              <button className="btn mt-6 btn-secondary">Secondary</button>
+              <button className="btn mt-6 btn-secondary bg-pink-500">Get Started</button>
               </div>
         <div className='w-full md:w-1/2 flex justify-center mt-10 md:mt-0 md:ml-16'>
             <img src={banner} className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto" alt="" />
