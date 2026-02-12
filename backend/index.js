@@ -6,13 +6,12 @@ import cors from "cors";
 import bookRoute from "./route/book.route.js"
 import userRoute from "./route/user.route.js"
 
+dotenv.config();
 
 const app=express()
-
 app.use(cors());
-
-dotenv.config();
 app.use(express.json())
+
 
 const PORT=process.env.PORT || 4000;
 const URI=process.env.MongoDBURI
