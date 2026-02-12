@@ -13,7 +13,7 @@ const App = () => {
         console.log(authUser);
 
   return (
-    <div>
+    <div className='min-h-screen  bg-white dark:bg-slate-900'>
          <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/course' element={authUser?<Courses/>:<Navigate to="/signup"/>}/>

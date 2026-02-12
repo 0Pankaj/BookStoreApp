@@ -11,7 +11,7 @@ document.documentElement.setAttribute("data-theme", "light")
 createRoot(document.getElementById('root')).render(
    <BrowserRouter>
       <AuthProvider>
-         <div className='dark:bg-slate-900 dark:text-white'>
+         <div className='min-h-screen dark:bg-slate-900 dark:text-white'>
         <App/>
       </div>
       </AuthProvider>
