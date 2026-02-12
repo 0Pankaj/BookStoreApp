@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+const API = import.meta.env.VITE_API_URL;
+
 
 function Course() {
  
@@ -12,7 +14,7 @@ function Course() {
   useEffect(()=>{
     const getBook=async()=>{
       try {
-        const res=await axios.get("http://localhost:4001/book")
+        const res=await axios.get(`${API}/book`)
         console.log(res.data)
         setBook(res.data);
       } catch (error) {
